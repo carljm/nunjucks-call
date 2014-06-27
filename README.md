@@ -41,6 +41,5 @@ Or in the browser, include nunjucks and `call.js` and then:
 Todo
 ----
 
-- Implement passing args to `caller()`.
 - Proper tests.
-- Merge into nunjucks core, hopefully.
+- Merge into nunjucks core.

@@ -8,10 +8,22 @@
 
     this.parse = function(parser, nodes, lexer) {
       var myName = parser.nextToken().value; // should be 'call'
+      var callerArgs = parser.parseSignature(true);
       var tok = parser.nextToken();
       var macroName = new nodes.Literal(tok.lineno, tok.colno, tok.value);
       var args = parser.parseSignature();
-      args.addChild(macroName); // arbitrarily add macro name as last arg
+      var numCallerArgs = 0;
+      if (callerArgs) {
+        for (var i=0; i<callerArgs.children.length; i++) {
+          // need to make literals, not symbols, so compiler doesn't deref
+          var sym = callerArgs.children[i];
+          args.addChild(new nodes.Literal(sym.lineno, sym.colno, sym.value));
+        }
+        numCallerArgs = callerArgs.children.length;
+      }
+      // Push the number of callerArgs so we know how many to expect
+      args.addChild(new nodes.Literal(tok.lineno, tok.colno, numCallerArgs));
+      args.addChild(macroName); // add macro name as last arg
       parser.advanceAfterBlockEnd(myName);
       var body = parser.parseUntilBlocks('endcall');
       parser.advanceAfterBlockEnd();
@@ -22,9 +34,23 @@
       var args = Array.prototype.slice.call(arguments, 0);
       var body = args.pop();
       var macroName = args.pop();
-      var macro = context.ctx[macroName];
+      var numCallerArgs = args.pop();
+      var callerArgNames = [];
+      for (var i=0; i<numCallerArgs; i++) {
+        callerArgNames.unshift(args.pop());
+      }
+      var macro = context.lookup(macroName);
       var macroArgs = args.slice(1); // skip the 'context' arg
-      context.ctx.caller = body;
+      var caller = function () {
+        var callerArgs = Array.prototype.slice.call(arguments, 0);
+        for (var i=0; i<numCallerArgs; i++) {
+          var arg = callerArgs.pop();
+          var name = callerArgNames.pop();
+          context.setVariable(name, arg);
+        }
+        return body();
+      };
+      context.setVariable('caller', caller);
       return macro.apply(this, macroArgs);
     };
   }
