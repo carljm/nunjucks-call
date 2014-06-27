@@ -1,0 +1,11 @@
+{% macro list(items) %}
+  <ul>
+    {% for i in items %}
+      {{ caller(i) }}
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% call(i) list(['a', 'b', 'c']) %}
+  <li>{{ i }}</li>
+{% endcall %}

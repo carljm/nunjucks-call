@@ -1,0 +1,11 @@
+{% macro wrap(el) %}
+  <{{ el }}>{{ caller() }}</{{ el }}>
+{% endmacro %}
+
+Before.
+
+{% call wrap('div') %}
+  Foo!
+{% endcall %}
+
+After.

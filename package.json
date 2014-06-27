@@ -1,10 +1,26 @@
 {
   "name": "nunjucks-call",
   "version": "0.0.1",
+  "author": "Carl Meyer <carl@oddbird.net>",
+  "description": "A nunjucks extension implementing the {% call %} tag.",
+  "contributors": [
+    {
+      "name": "Carl Meyer",
+      "email": "carl@oddbird.net"
+    }
+  ],
   "devDependencies": {
-    "nunjucks": "^1.0.5"
+    "nunjucks": "1.x"
   },
   "dependencies": {},
+  "peerDependencies": {
+    "nunjucks": "1.x"
+  },
+  "keywords": [
+    "nunjucks",
+    "call",
+    "macro"
+  ],
   "repository": {
     "type": "git",
     "url": "http://github.com/oddbird/nunjucks-call.git"
