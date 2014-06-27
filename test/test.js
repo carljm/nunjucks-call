@@ -1,9 +1,9 @@
 var console = require('console');
 var nunjucks = require('nunjucks');
-var callExt = require('../index.js');
+var nunjucksCall = require('../index.js');
 var env = nunjucks.configure('test/templates');
 
-callExt.init(env);
+nunjucksCall.init(env);
 
 console.log('test_simple.j2:');
 console.log(env.render('test_simple.j2'));

@@ -27,16 +27,15 @@ Usage
 In node:
 
     var nunjucks = require('nunjucks');
-    var callExt = require('nunjucks-call');
+    var nunjucksCall = require('nunjucks-call');
 
     var env = nunjucks.configure();
-
-    callExt.init(env);
+    nunjucksCall.init(env);
 
 Or in the browser, include nunjucks and `call.js` and then:
 
     var env = nunjucks.configure();
-    env.addExtension('call', new CallBlockExtension());
+    nunjucksCall.init(env);
 
 
 Todo

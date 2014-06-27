@@ -29,11 +29,18 @@
     };
   }
 
+  function init(nunjucksEnv) {
+    nunjucksEnv.addExtension('call', new CallBlockExtension());
+  }
+
+  var exports = {
+    CallBlockExtension: CallBlockExtension,
+    init: init,
+  };
+
   if (typeof module !== 'undefined') {
-    module.exports = {
-      CallBlockExtension: CallBlockExtension,
-    };
+    module.exports = exports;
   } else {
-    root.CallBlockExtension = CallBlockExtension;
+    root.nunjucksCall = exports;
   }
 }).call(this);
