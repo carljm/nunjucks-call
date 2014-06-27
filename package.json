@@ -1,0 +1,12 @@
+{
+  "name": "nunjucks-call",
+  "version": "0.0.1",
+  "devDependencies": {
+    "nunjucks": "^1.0.5"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/oddbird/nunjucks-call.git"
+  }
+}
