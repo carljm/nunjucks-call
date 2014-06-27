@@ -44,9 +44,7 @@
       var caller = function () {
         var callerArgs = Array.prototype.slice.call(arguments, 0);
         for (var i=0; i<numCallerArgs; i++) {
-          var arg = callerArgs.pop();
-          var name = callerArgNames.pop();
-          context.setVariable(name, arg);
+          context.setVariable(callerArgNames[i], callerArgs[i]);
         }
         return body();
       };
