@@ -38,6 +38,25 @@ Or in the browser, include nunjucks and `call.js` and then:
     nunjucksCall.init(env);
 
 
+Advanced
+---------
+
+This extension also supports passing arguments from the macro back to the
+caller, so you can do things like this:
+
+    {% macro list(items) %}
+      <ul>
+        {% for i in items %}
+          <li>{{ caller(i) }}</li>
+        {% endfor %}
+      </ul>
+    {% endmacro %}
+
+    {% call(item) list(['a', 'b', 'c']) %}
+      {{ item }}
+    {% endcall %}
+
+
 Todo
 ----
 
