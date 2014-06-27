@@ -1,8 +1,8 @@
 nunjucks-call
 =============
 
-An implementation of the `call` tag for
-[nunjucks](http://mozilla.github.io/nunjucks/).
+An implementation of the [call](http://jinja.pocoo.org/docs/templates/#call)
+tag for [nunjucks](http://mozilla.github.io/nunjucks/).
 
 Allows macros to use `caller()`:
 
@@ -13,6 +13,12 @@ Allows macros to use `caller()`:
     {% call wrap('div') %}
       Foo!
     {% endcall %}
+
+This will render as:
+
+    <div>
+      Foo!
+    </div>
 
 
 Usage
@@ -36,5 +42,6 @@ Or in the browser, include nunjucks and `call.js` and then:
 Todo
 ----
 
-- Proper tests.
 - Implement passing args to `caller()`.
+- Proper tests.
+- Merge into nunjucks core, hopefully.
