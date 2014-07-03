@@ -1,18 +1,20 @@
 var console = require('console');
+var fs = require('fs');
 var nunjucks = require('nunjucks');
 var nunjucksCall = require('../index.js');
 var env = nunjucks.configure('test/templates', {autoescape: true});
 
 nunjucksCall.init(env);
 
-console.log('test_simple.j2:');
-console.log(env.render('test_simple.j2'));
+function test(name) {
+  var expected = fs.readFileSync(
+    'test/templates/' + name + '.output', {encoding: 'utf8'});
+  var actual = env.render(name + '.j2');
+  console.log(name + ': ' + (expected === actual ? 'OK' : actual));
+}
 
-console.log('test_simple2.j2:');
-console.log(env.render('test_simple2.j2'));
-
-console.log('test_call.j2:');
-console.log(env.render('test_call.j2'));
-
-console.log('test_call2.j2:');
-console.log(env.render('test_call2.j2'));
+test('test_simple');
+test('test_simple2');
+test('test_call');
+test('test_call2');
+test('test_imported');

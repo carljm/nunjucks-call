@@ -9,7 +9,7 @@
     this.parse = function(parser, nodes, lexer) {
       var myName = parser.nextToken().value; // should be 'call'
       var callerArgs = parser.parseSignature(true);
-      var macro = parser.nextToken();
+      var macro = parser.parsePrimary(true);
       // We can only pass one flat list of arguments to our run() function, so
       // we construct the list like so: first all the arguments to the called
       // macro, then all the caller argument names, then the number of caller

@@ -1,0 +1,3 @@
+{% macro wrap(el) %}
+<{{ el }}>{{ caller() }}</{{ el }}>
+{% endmacro %}
