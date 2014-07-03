@@ -1,4 +1,4 @@
-(function () {
+(function (nunjucks) {
   "use strict";
 
   var root = this;
@@ -62,7 +62,7 @@
         for (var i=0; i<numCallerArgs; i++) {
           context.setVariable(callerArgNames[i], callerArgs[i]);
         }
-        return body();
+        return new nunjucks.runtime.SafeString(body());
       };
       context.setVariable('caller', caller);
       return macro.apply(this, macroArgs);
@@ -84,4 +84,4 @@
   } else {
     root.nunjucksCall = exports;
   }
-}).call(this);
+}).call(this, (require && require('nunjucks')) || nunjucks);

@@ -1,7 +1,7 @@
 var console = require('console');
 var nunjucks = require('nunjucks');
 var nunjucksCall = require('../index.js');
-var env = nunjucks.configure('test/templates');
+var env = nunjucks.configure('test/templates', {autoescape: true});
 
 nunjucksCall.init(env);
 
