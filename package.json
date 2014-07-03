@@ -1,6 +1,6 @@
 {
   "name": "nunjucks-call",
-  "version": "0.0.1",
+  "version": "0.1.0-alpha",
   "author": "Carl Meyer <carl@oddbird.net>",
   "description": "A nunjucks extension implementing the {% call %} tag.",
   "contributors": [
